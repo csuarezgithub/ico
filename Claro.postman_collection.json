@@ -1,0 +1,569 @@
+{
+	"info": {
+		"_postman_id": "0d6b1193-ec06-4a39-a0ec-80a50c365438",
+		"name": "Claro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ec4f4fc-04ce-410a-af92-119200d288de",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"tokenId\", jsonData.tokenId);",
+							"pm.environment.set(\"userId\", jsonData.userId);",
+							"pm.environment.set(\"vdcIdDefault\", jsonData.userBirthVdcId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userName\": \"ico_deploy\",\r\n\"password\": \"deploy.Ico2018\",\r\n\"loginScene\": 2\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/goku/rest/v1.5/tokens",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar Ordenes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6ec4f4fc-04ce-410a-af92-119200d288de",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.environment.set(\"tokenId\", jsonData.tokenId);",
+							"pm.environment.set(\"userId\", jsonData.userId);",
+							"pm.environment.set(\"vdcIdDefault\", jsonData.userBirthVdcId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "10.41.23.7"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userName\": \"ico_deploy\",\r\n\"password\": \"deploy.Ico2018\",\r\n\"loginScene\": 2\r\n}"
+				},
+				"url": {
+					"raw": "https://10.41.23.7:543/goku/rest/v1.5/{{vdcIdDefault}}/orders",
+					"protocol": "https",
+					"host": [
+						"10",
+						"41",
+						"23",
+						"7"
+					],
+					"port": "543",
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"{{vdcIdDefault}}",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar VDC",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "10.41.23.7"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/goku/rest/v1.5/vdcs/{{vdcIdDefault}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"vdcs",
+						"{{vdcIdDefault}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Templates",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "{{host}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/goku/rest/v1.5/{{vdcIdDefault}}/services?cloudInfraId=68&inputSearch=&start=0&limit=4&serviceType=vm&status=published",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"{{vdcIdDefault}}",
+						"services"
+					],
+					"query": [
+						{
+							"key": "cloudInfraId",
+							"value": "68"
+						},
+						{
+							"key": "inputSearch",
+							"value": ""
+						},
+						{
+							"key": "start",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "4"
+						},
+						{
+							"key": "serviceType",
+							"value": "vm"
+						},
+						{
+							"key": "status",
+							"value": "published"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Flavors",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "{{host}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/goku/rest/v1.5/{{vdcIdDefault}}/vm-flavors?cloud-infra=68&azid=az1.dc1&virtualEnvType=KVM",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"{{vdcIdDefault}}",
+						"vm-flavors"
+					],
+					"query": [
+						{
+							"key": "cloud-infra",
+							"value": "68"
+						},
+						{
+							"key": "azid",
+							"value": "az1.dc1"
+						},
+						{
+							"key": "virtualEnvType",
+							"value": "KVM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Redes Externas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "{{host}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/goku/rest/v1.5/{{vdcIdDefault}}/available-external-networks?start=&limit=10&cloud-infras=68",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"{{vdcIdDefault}}",
+						"available-external-networks"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": ""
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "cloud-infras",
+							"value": "68"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta VDC 2",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "{{host}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://10.41.23.7:543/goku/rest/v1.5/{{vdcIdDefault}}/cloud-infras?connect-status=connected&service-status=normal",
+					"protocol": "https",
+					"host": [
+						"10",
+						"41",
+						"23",
+						"7"
+					],
+					"port": "543",
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"{{vdcIdDefault}}",
+						"cloud-infras"
+					],
+					"query": [
+						{
+							"key": "connect-status",
+							"value": "connected"
+						},
+						{
+							"key": "service-status",
+							"value": "normal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Template",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "{{host}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://10.41.23.7:543/goku/rest/v1.5/e2ae48b6cd1640428190f56737a2915a/services/78935b06-37d1-42ed-abfb-42ac62985211",
+					"protocol": "https",
+					"host": [
+						"10",
+						"41",
+						"23",
+						"7"
+					],
+					"port": "543",
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"e2ae48b6cd1640428190f56737a2915a",
+						"services",
+						"78935b06-37d1-42ed-abfb-42ac62985211"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalle Template",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "{{host}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://10.41.23.7:543/goku/rest/v1.5/e2ae48b6cd1640428190f56737a2915a/vmtemplates/fb3c2fa0-4af5-47b3-8e85-afc060306ad6?cloud-infra=68",
+					"protocol": "https",
+					"host": [
+						"10",
+						"41",
+						"23",
+						"7"
+					],
+					"port": "543",
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"e2ae48b6cd1640428190f56737a2915a",
+						"vmtemplates",
+						"fb3c2fa0-4af5-47b3-8e85-afc060306ad6"
+					],
+					"query": [
+						{
+							"key": "cloud-infra",
+							"value": "68"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Zonas Disponibles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-User-ID",
+						"value": "{{userId}}"
+					},
+					{
+						"key": "X-HW-Cloud-Auth-Token",
+						"value": "{{tokenId}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Host",
+						"value": "{{host}}"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Restlet"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://10.41.23.7:543/goku/rest/v1.5/e2ae48b6cd1640428190f56737a2915a/available-zones?cloud-infra=68&manage-status=occupied&service-status=normal",
+					"protocol": "https",
+					"host": [
+						"10",
+						"41",
+						"23",
+						"7"
+					],
+					"port": "543",
+					"path": [
+						"goku",
+						"rest",
+						"v1.5",
+						"e2ae48b6cd1640428190f56737a2915a",
+						"available-zones"
+					],
+					"query": [
+						{
+							"key": "cloud-infra",
+							"value": "68"
+						},
+						{
+							"key": "manage-status",
+							"value": "occupied"
+						},
+						{
+							"key": "service-status",
+							"value": "normal"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
